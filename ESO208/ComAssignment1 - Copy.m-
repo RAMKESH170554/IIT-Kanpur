@@ -1,0 +1,141 @@
+function varargout = ComAssignment1(varargin)
+gui_Singleton = 1;
+gui_State = struct('gui_Name',       mfilename, ...
+                   'gui_Singleton',  gui_Singleton, ...
+                   'gui_OpeningFcn', @ComAssignment1_OpeningFcn, ...
+                   'gui_OutputFcn',  @ComAssignment1_OutputFcn, ...
+                   'gui_LayoutFcn',  [] , ...
+                   'gui_Callback',   []);
+if nargin && ischar(varargin{1})
+    gui_State.gui_Callback = str2func(varargin{1});
+end
+
+if nargout
+    [varargout{1:nargout}] = gui_mainfcn(gui_State, varargin{:});
+else
+    gui_mainfcn(gui_State, varargin{:});
+end
+function ComAssignment1_OpeningFcn(hObject, ~, handles, varargin)
+handles.output = hObject;
+guidata(hObject, handles);
+function varargout = ComAssignment1_OutputFcn(~, ~, handles) 
+varargout{1} = handles.output;
+function equation_Callback(~, ~, ~)
+function xlower_Callback(~, ~, ~)
+function xupper_Callback(~, ~, ~)
+function maxiters_Callback(~, ~, ~)
+function maxerror_Callback(~, ~, ~)
+function equation_CreateFcn(hObject, ~, ~)
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+function xlower_CreateFcn(hObject, ~, ~)
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+function xupper_CreateFcn(hObject, ~, ~)
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+function startvalue_CreateFcn(hObject, ~, ~)
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+function maxiters_CreateFcn(hObject, ~, ~)
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+function maxerror_CreateFcn(hObject, ~, ~)
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+function submit_Callback(~, ~, handles)
+bisection(handles);
+falseposition(handles);
+
+function bisection(handles)
+syms f(x) f1(x)
+
+l = eval(get(handles.xlower, 'string'));
+u = eval(get(handles.xupper, 'string'));
+maxiters = eval(get(handles.maxiters, 'string'));
+maxerror = eval(get(handles.maxerror, 'string'));
+
+f(x) = sym(get(handles.equation, 'string'));
+f1(x) = diff(f);
+
+axes(handles.axes1);
+ezplot(f, [l u]), grid;
+
+x0 = l;
+errors = [];
+clc
+
+for n = 1:maxiters
+    x = (l+u)/2;
+    y = eval(f(x));
+
+    fl = eval(f(l));
+    
+    e = (x - x0)/x*100;
+    errors = [errors e];
+    
+    if y*fl == 0
+        break
+    elseif y*fl > 0
+        l = x;
+    else
+        u = x;
+    end
+    
+    if (abs(e) < maxerror || y == 0)
+        break;
+    end
+end
+
+axes(handles.axes2);
+plot(errors), grid;
+
+function falseposition(handles)
+syms f(x) f1(x)
+
+x0 = eval(get(handles.xlower, 'string'));
+u = eval(get(handles.xupper, 'string'));
+maxiters = eval(get(handles.maxiters, 'string'));
+maxerror = eval(get(handles.maxerror, 'string'));
+
+f(x) = sym(get(handles.equation, 'string'));
+f1(x) = diff(f);
+
+fu = eval(f(u));
+
+axes(handles.axes1);
+ezplot(f, [l u]), grid;
+errors = [];
+clc
+
+for n = 1:maxiters
+    x = u - fu * (u - x(i)) / (fu - f);
+    y = eval(f(x));
+
+    fl = eval(f(l));
+    
+    e = (x - x0)/x*100;
+    errors = [errors e];
+    
+    if y*fl == 0
+        break
+    elseif y*fl > 0
+        l = x;
+    else
+        u = x;
+    end
+    
+    if (abs(e) < maxerror || y == 0)
+        break;
+    end
+end
+
+axes(handles.axes2);
+plot(errors), grid;
