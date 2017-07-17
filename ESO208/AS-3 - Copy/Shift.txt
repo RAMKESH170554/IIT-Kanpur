@@ -1,0 +1,6 @@
+Shifted power method
+Eigen value->8.146131
+Iterations->6.000000
+0.93557
+-0.30853
+0.17181

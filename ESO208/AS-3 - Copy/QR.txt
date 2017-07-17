@@ -1,0 +1,6 @@
+QR Method
+Iterations->23.000000
+Eigen values
+10.779
+8.1462
+3.0749
