@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1497070760 source:c:\users\tarun rajput\desktop\radix2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+
