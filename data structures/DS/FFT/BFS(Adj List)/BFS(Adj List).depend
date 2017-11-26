@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1499552243 source:c:\users\tarun rajput\desktop\bfs(adj list)\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1499552642 source:c:\users\tarun rajput\documents\codes\ds\bfs(adj list)\main.c
+	<stdio.h>
+	<stdlib.h>
+
