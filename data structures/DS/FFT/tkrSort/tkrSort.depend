@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1496944030 source:c:\users\tarun rajput\desktop\tkrsort\main.c
+	<stdio.h>
+	<stdlib.h>
+

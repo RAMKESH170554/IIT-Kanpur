@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1497208093 source:c:\users\tarun rajput\desktop\reverse_string\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1502366823 source:c:\users\tarun rajput\documents\codes\ds\reverse_string\main.c
+	<stdio.h>
+	<stdlib.h>
+
